@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.trello.rxlifecycle.android.FragmentEvent;
+import com.xyl.architectrue.utils.LogUtils;
 import com.xyl.architectrue.view.LoadMoreRecyleView;
 import com.xyl.architectrue.view.MultiStateView;
 import com.xyl.zhifutopanser.Model.TopQuestion;
@@ -75,7 +76,7 @@ public class RecylerViewFragment extends BaseFragment {
         if(null != args) {
             mTopicId = args.getInt(BUNDLE_KEY);
         }
-
+        LogUtils.e(" onCreateView " + mTopicId);
         View view = inflater.inflate(R.layout.recyleview_fragment_layout, container, false);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.fragment_refresh);
         mMoreRecyleView = (LoadMoreRecyleView) view.findViewById(R.id.fragment_recyleview);
@@ -85,16 +86,19 @@ public class RecylerViewFragment extends BaseFragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         init();
+        LogUtils.e(" onActivityResult ");
+
     }
+
 
     @Override
     protected void onFirstUserVisible() {
         super.onFirstUserVisible();
-
+        LogUtils.e(" onFirstUserVisible ");
         onUserVisible();
     }
 
@@ -107,6 +111,8 @@ public class RecylerViewFragment extends BaseFragment {
         if(mTopQuestions == null || mTopQuestions.size() == 0) {
             initData(true, mPage = PAGE_SART);
         }
+
+        LogUtils.e(" onFirstUserVisible ");
     }
 
     private void init() {
@@ -124,15 +130,18 @@ public class RecylerViewFragment extends BaseFragment {
         if(needState) {
             mStateView.setViewState(MultiStateView.ViewState.LOADING);
         }
-
+        LogUtils.e(" initData ");
         final String url = "https://www.zhihu.com/topic/" + mTopicId + "/top-answers?page=" + page;
+        LogUtils.e(url);;
         Observable.create(new Observable.OnSubscribe<Document>() {
             @Override
             public void call(Subscriber<? super Document> subscriber) {
 
                 try {
-                    subscriber.onNext(Jsoup.connect(url).timeout(5000)
-                            .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6").get());
+                    subscriber.onNext(Jsoup.connect(url)
+                            .timeout(5000)
+                            .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+                            .get());
                     subscriber.onCompleted();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -160,12 +169,13 @@ public class RecylerViewFragment extends BaseFragment {
                         } else {
                             mMoreRecyleView.setLoadMoreState(LoadMoreRecyleView.STATE_FINISH_LOADMORE);
                         }
-
+                        LogUtils.e("onCompleted " + mTopQuestions.get(0).getTitle());
                         initRecylerView();
                     }
 
                     @Override
                     public void onError(Throwable e) {
+//                        LogUtils.e("onError " + mTopQuestions.get(0).getTitle());
                         if (needState) {
                             mStateView.setViewState(MultiStateView.ViewState.ERROR);
                         }
@@ -188,6 +198,8 @@ public class RecylerViewFragment extends BaseFragment {
                         } else {
                             mTopQuestions.addAll(o);
                         }
+
+                        LogUtils.e("onNext " + mTopQuestions.get(0).getTitle());
                     }
                 });
     }

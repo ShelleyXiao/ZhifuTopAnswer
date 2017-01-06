@@ -68,7 +68,6 @@ public class MainFragment extends BaseFragment implements TopicSelectMenuAdapter
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         init();
     }
 
@@ -82,6 +81,7 @@ public class MainFragment extends BaseFragment implements TopicSelectMenuAdapter
 
     private void initViewpaper() {
         if(mTabAdapter == null) {
+
             mTabAdapter = new TabAdapter(getChildFragmentManager(), mTopics, mFragments);
             mViewPager.setAdapter(mTabAdapter);;
             mViewPager.setOffscreenPageLimit(mTopics.size());
@@ -120,6 +120,7 @@ public class MainFragment extends BaseFragment implements TopicSelectMenuAdapter
         mTopics.clear();
         mFragments.clear();
         mTabLayout.removeAllViews();;
+
         mTopics.addAll(AllTopicUtils.getInstance().getAllTopic(getActivity(), getString(R.string.title)));
 
         Observable.from(mTopics)

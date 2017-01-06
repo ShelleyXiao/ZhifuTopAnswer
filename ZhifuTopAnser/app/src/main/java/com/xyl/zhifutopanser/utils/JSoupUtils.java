@@ -70,7 +70,7 @@ public class JSoupUtils {
                 }
             }
             if (!TextUtils.isEmpty(answers.getTitle()) && !TextUtils.isEmpty(answers.getUrl())) {
-                LogUtils.i(TAG, answers.toString());
+//                LogUtils.e( answers.toString());
                 list.add(answers);
             }
         }
