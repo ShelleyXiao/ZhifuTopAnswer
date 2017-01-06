@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.CheckResult;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.trello.rxlifecycle.LifecycleProvider;
 import com.trello.rxlifecycle.LifecycleTransformer;
@@ -88,5 +89,9 @@ public class RxAppCompatActivity extends AppCompatActivity implements LifecycleP
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    protected void toast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 }

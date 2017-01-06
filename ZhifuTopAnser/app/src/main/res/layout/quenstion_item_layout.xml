@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bgselect_ffffff"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:padding="10dp"
+    >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/question_top_img_desc"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/question_top_title_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/_212121"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="手动阀手动阀沙发沙发斯蒂芬斯蒂芬沙发士大夫撒飞洒发的士大夫撒范德萨发斯蒂芬"
+        />
+
+    <TextView
+        android:id="@+id/question_top_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textColor="@color/_333333"
+        android:textSize="15sp"
+        android:includeFontPadding="true"
+        tools:text="在设置界面布局的时候，设计师会给一张标注了尺寸的UI设计图，如果在UI中包含了TextView空间的话，会发现即使完全按照标注的尺寸来做，最终的显示效果和设计图还是有差异。"
+        />
+
+
+    <TextView
+        android:id="@+id/question_top_vote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/_939da4"
+        android:textSize="13sp"
+        android:includeFontPadding="true"
+        tools:text="205 赞同"
+        />
+
+
+</LinearLayout>

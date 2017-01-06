@@ -27,6 +27,9 @@ public class AppManager {
     }
 
     public static AppManager getInstance() {
+        if(instance == null) {
+            instance = new AppManager();
+        }
         return instance;
     }
 

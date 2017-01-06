@@ -1,8 +1,8 @@
 package com.xyl.architectrue.rxsupport;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.CheckResult;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.trello.rxlifecycle.LifecycleProvider;

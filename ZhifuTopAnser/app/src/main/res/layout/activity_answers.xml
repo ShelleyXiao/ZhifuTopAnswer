@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.xyl.zhifutopanser.activity.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/answers_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="enterAlways|scroll"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/answers_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/_f2f4f7"
+        android:orientation="vertical">
+
+        <com.xyl.architectrue.view.MultiStateView
+            android:id="@+id/answers_multistateview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:msv_emptyView="@layout/multistateview_empty_layout"
+            app:msv_errorView="@layout/multistateview_error_layout"
+            app:msv_loadingView="@layout/multistateview_loading_layout"
+            app:msv_viewState="loading">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/answers_recyleview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                />
+
+        </com.xyl.architectrue.view.MultiStateView>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</LinearLayout>

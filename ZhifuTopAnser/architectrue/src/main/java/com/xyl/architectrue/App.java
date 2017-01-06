@@ -3,6 +3,8 @@ package com.xyl.architectrue;
 import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.xyl.architectrue.utils.LogUtils;
+import com.xyl.architectrue.utils.Utils;
 
 /**
  * User: ShaudXiao
@@ -16,10 +18,13 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class App extends Application {
 
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         Fresco.initialize(this);
+        Utils.init(getApplicationContext());
+        LogUtils.init(true, false, 'e', "Zhifu");
     }
 }

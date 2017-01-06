@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="15dp"
+    android:background="@drawable/bgselect_ffffff"
+    android:padding="15dp"
+    >
+
+    <TextView
+        android:id="@+id/item_fr_answer_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/_939da4"
+        android:textSize="13sp"
+        tools:text="作者：ａｄ"/>
+
+    <TextView
+        android:id="@+id/item_fr_answer_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/_333333"
+        android:textSize="15sp"
+        android:includeFontPadding="true"
+        android:ellipsize="end"
+        tools:text="在设计这盏灯时，在赋予其功能的同时，充分考虑了其自然形态，我们敢说，这是有史以来最为自然和漂亮的夜灯！白天，无论摆在哪里它多是一盆漂亮的绿色盆栽，在满目苍夷的冬日里，为您增添一抹绿色；夜里，它会绽放出异常柔和的光芒，带您领略阿凡达般的美丽新视界。光线感应技术，全程自动控制，无需开关和打理。"/>
+
+    <TextView
+        android:id="@+id/item_fr_answer_vote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/_939da4"
+        android:textSize="13sp"
+        tools:text="206 赞同"/>
+
+</LinearLayout>

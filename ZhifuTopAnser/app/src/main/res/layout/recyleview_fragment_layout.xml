@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/_f2f4f7">
+
+    <com.xyl.architectrue.view.MultiStateView
+        android:id="@+id/multistateview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:msv_emptyView="@layout/multistateview_empty_layout"
+        app:msv_loadingView="@layout/multistateview_loading_layout"
+        app:msv_errorView="@layout/multistateview_error_layout"
+        app:msv_viewState="loading"
+        >
+
+
+        <com.xyl.architectrue.view.LoadMoreRecyleView
+            android:id="@+id/fragment_recyleview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+    </com.xyl.architectrue.view.MultiStateView>
+
+
+</android.support.v4.widget.SwipeRefreshLayout>

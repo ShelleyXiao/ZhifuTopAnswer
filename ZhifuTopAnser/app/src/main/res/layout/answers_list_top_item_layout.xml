@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp"
+        >
+
+        <TextView
+            android:id="@+id/item_fr_answer_top_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/_212121"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            tools:text="人一呼,脉在动;一吸,脉亦再动;呼吸定息,脉五动"
+            />
+
+        <TextView
+            android:id="@+id/item_fr_answer_top_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:includeFontPadding="true"
+            android:textColor="@color/_333333"
+            android:textSize="15sp"
+            tools:text="一个人伸长脖子在用力呼吸;或许是在向远方眺望;也有可能在期许着表达出了对生命的渴望;对新鲜空气的向往;对已逝去蓝色天空的追忆远古的宁静致远,永恒的自然秩序才是当下生活在工业和混凝土中的我们应该追求和"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/_f2f4f7">
+
+        <TextView
+            android:id="@+id/item_fr_answer_top_count"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center|left"
+            tools:text="1000 个"/>
+
+    </LinearLayout>
+
+</LinearLayout>
