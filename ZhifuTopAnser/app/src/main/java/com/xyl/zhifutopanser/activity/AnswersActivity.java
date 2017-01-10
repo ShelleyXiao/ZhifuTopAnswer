@@ -1,5 +1,6 @@
 package com.xyl.zhifutopanser.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,7 @@ import com.trello.rxlifecycle.android.ActivityEvent;
 import com.xyl.architectrue.adapter.BaseAdapter;
 import com.xyl.architectrue.adapter.BaseViewHolder;
 import com.xyl.architectrue.rxsupport.RxAppCompatActivity;
+import com.xyl.architectrue.utils.LogUtils;
 import com.xyl.architectrue.view.MultiStateView;
 import com.xyl.zhifutopanser.Model.AnswersModel;
 import com.xyl.zhifutopanser.R;
@@ -25,6 +27,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -52,7 +55,7 @@ public class AnswersActivity extends RxAppCompatActivity {
     private RecyclerView mRecyclerView;
     private Toolbar mToolbar;
 
-    private List<AnswersModel> mAnswersModels;
+    private List<AnswersModel> mAnswersModels = new ArrayList<>();
 
     private String mQuestionUrl;
     private String title;
@@ -67,7 +70,7 @@ public class AnswersActivity extends RxAppCompatActivity {
         setContentView(R.layout.activity_answers);
 
         mQuestionUrl = getIntent().getStringExtra(QUESTION_URL);
-
+        LogUtils.e("mQuestionUrl " + mQuestionUrl);
         initView();
 
 
@@ -84,9 +87,12 @@ public class AnswersActivity extends RxAppCompatActivity {
         mToolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_back));
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationOnClickListener((v) -> {
-            intiData(false);
+            onBackPressed();
         });
 
+        mRefreshLayout.setOnRefreshListener(() -> {
+            intiData(false);
+        });
         intiData(true);
 
     }
@@ -121,7 +127,7 @@ public class AnswersActivity extends RxAppCompatActivity {
                 String detailHtml = detailLink.select("div.zm-editable-content").html();
                 AnswersActivity.this.title = title;
                 detail = detailHtml;
-
+                LogUtils.e("detail " + detail);
                 return JSoupUtils.getTopAnswers(document);
             }
         }).compose(this.<List<AnswersModel>>bindUntilEvent(ActivityEvent.DESTROY))
@@ -141,6 +147,7 @@ public class AnswersActivity extends RxAppCompatActivity {
 
                     @Override
                     public void onError(Throwable e) {
+                        LogUtils.e("Throwable " + e);
                         if(needState) {
                             mStateView.setViewState(MultiStateView.ViewState.ERROR);
                         }
@@ -176,7 +183,12 @@ public class AnswersActivity extends RxAppCompatActivity {
 
                 @Override
                 public void onItemClick(View v, int position) {
-
+                    AnswersModel answer = mAnswersModels.get(position);
+                    Intent intent = new Intent(AnswersActivity.this, AnwersDetailActivity.class);
+                    intent.putExtra(AnwersDetailActivity.ANSWERS_URL, answer.getUrl());
+                    intent.putExtra(AnwersDetailActivity.ANSWERS_TITLE, title);
+                    intent.putExtra(AnwersDetailActivity.ANSWERS_DETAIL, detail);
+                    startActivity(intent);
                 }
 
                 @Override

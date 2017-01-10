@@ -70,7 +70,7 @@ public class JSoupUtils {
                 }
             }
             if (!TextUtils.isEmpty(answers.getTitle()) && !TextUtils.isEmpty(answers.getUrl())) {
-//                LogUtils.e( answers.toString());
+                LogUtils.e( answers.toString());
                 list.add(answers);
             }
         }
@@ -102,7 +102,6 @@ public class JSoupUtils {
                 answersModel.setUrl(url);
                 answersModel.setVote(vote);
                 list.add(answersModel);
-
             }
         }
 

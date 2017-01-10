@@ -57,4 +57,14 @@ public class AnswersModel {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "AnswersModel{" +
+                "vote='" + vote + '\'' +
+                ", content='" + content + '\'' +
+                ", author='" + author + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

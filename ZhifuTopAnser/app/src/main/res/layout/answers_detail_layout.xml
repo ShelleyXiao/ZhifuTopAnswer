@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/answers_datail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="enterAlways|scroll"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <com.xyl.architectrue.view.MultiStateView
+        android:id="@+id/answers_detail_multistateview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:msv_emptyView="@layout/multistateview_empty_layout"
+        app:msv_errorView="@layout/multistateview_error_layout"
+        app:msv_loadingView="@layout/multistateview_loading_layout"
+        app:msv_viewState="loading">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/answers_detail_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:includeFontPadding="true"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textColor="@color/_333333"
+                    android:textSize="15sp"
+                    tools:text="空气污染问题一直都是大家非常关注的，其实不仅在国内有这种情况，世界范围内，很多国家包括印度、巴黎"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:id="@+id/answers_detail_padding"
+                    android:background="@color/_f2f4f7"
+                    />
+
+                <WebView
+                    android:id="@+id/answers_detail_webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+
+                    />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        </com.xyl.architectrue.view.MultiStateView>
+
+</LinearLayout>

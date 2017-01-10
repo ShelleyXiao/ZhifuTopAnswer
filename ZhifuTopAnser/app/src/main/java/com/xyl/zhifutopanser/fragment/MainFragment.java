@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.trello.rxlifecycle.android.FragmentEvent;
+import com.xyl.architectrue.utils.LogUtils;
 import com.xyl.zhifutopanser.Model.TopicModel;
 import com.xyl.zhifutopanser.R;
 import com.xyl.zhifutopanser.adapter.TabAdapter;
@@ -87,7 +88,18 @@ public class MainFragment extends BaseFragment implements TopicSelectMenuAdapter
             mViewPager.setOffscreenPageLimit(mTopics.size());
 
             mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-            mTabLayout.setupWithViewPager(mViewPager);
+
+            mTabLayout.post(new Runnable() {
+                @Override
+                public void run() {
+                    mTabLayout.setupWithViewPager(mViewPager);
+                }
+            });
+
+//            mTabLayout.setupWithViewPager(mViewPager);
+            for(int i = 0; i < mTopics.size(); i++) {
+                mTabLayout.getTabAt(i).setText(mTopics.get(i).getTopicName());
+            }
             mExpendMenuImage.setClickable(true);;
             mExpendMenuImage.setOnClickListener(this);
         } else {
@@ -120,7 +132,7 @@ public class MainFragment extends BaseFragment implements TopicSelectMenuAdapter
         mTopics.clear();
         mFragments.clear();
         mTabLayout.removeAllViews();;
-
+        LogUtils.e("init");
         mTopics.addAll(AllTopicUtils.getInstance().getAllTopic(getActivity(), getString(R.string.title)));
 
         Observable.from(mTopics)
@@ -138,6 +150,7 @@ public class MainFragment extends BaseFragment implements TopicSelectMenuAdapter
                     @Override
                     public void onCompleted() {
                         initViewpaper();
+                        LogUtils.e("initViewpaper");
                     }
 
                     @Override

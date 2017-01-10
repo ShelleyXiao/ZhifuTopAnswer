@@ -22,10 +22,6 @@ public class BaseFragment extends BaseLazyFragment {
 
     }
 
-    @Override
-    protected void onFirstUserInvisible() {
-
-    }
 
     @Override
     protected void onUserInvisible() {

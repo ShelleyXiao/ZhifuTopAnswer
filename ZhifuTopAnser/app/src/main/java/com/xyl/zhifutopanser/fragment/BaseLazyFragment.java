@@ -1,8 +1,8 @@
 package com.xyl.zhifutopanser.fragment;
 
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 
 import com.xyl.architectrue.rxsupport.RxFragment;
 
@@ -25,8 +25,8 @@ public abstract class BaseLazyFragment extends RxFragment {
 
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         initPrepare();
     }
@@ -94,7 +94,7 @@ public abstract class BaseLazyFragment extends RxFragment {
     /**
      * 当Fragment第一次不可见时调用
      */
-    protected abstract void onFirstUserInvisible();
+    protected void onFirstUserInvisible() {};
 
     /**
      * * 此方法像Fragment生命周期中的onPause

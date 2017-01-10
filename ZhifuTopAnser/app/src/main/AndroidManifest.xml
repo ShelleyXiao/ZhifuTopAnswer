@@ -21,6 +21,7 @@
         </activity>
 
         <activity android:name=".activity.AnswersActivity"></activity>
+        <activity android:name=".activity.AnwersDetailActivity"></activity>
     </application>
 
 </manifest>

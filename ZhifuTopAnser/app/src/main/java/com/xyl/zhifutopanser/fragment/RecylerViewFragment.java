@@ -23,6 +23,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -52,7 +53,7 @@ public class RecylerViewFragment extends BaseFragment {
     private MultiStateView mStateView;
     private SwipeRefreshLayout mRefreshLayout;
 
-    private List<TopQuestion> mTopQuestions;
+    private List<TopQuestion> mTopQuestions = new ArrayList<>();
 
     private QuestionRecyleViewAdapter mRecyleViewAdapter ;
 
@@ -76,21 +77,19 @@ public class RecylerViewFragment extends BaseFragment {
         if(null != args) {
             mTopicId = args.getInt(BUNDLE_KEY);
         }
-        LogUtils.e(" onCreateView " + mTopicId);
         View view = inflater.inflate(R.layout.recyleview_fragment_layout, container, false);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.fragment_refresh);
         mMoreRecyleView = (LoadMoreRecyleView) view.findViewById(R.id.fragment_recyleview);
         mStateView = (MultiStateView) view.findViewById(R.id.multistateview);
-
+//        LogUtils.e("onCreateView");
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+//        LogUtils.e("onActivityCreated");
         init();
-        LogUtils.e(" onActivityResult ");
 
     }
 
@@ -98,7 +97,6 @@ public class RecylerViewFragment extends BaseFragment {
     @Override
     protected void onFirstUserVisible() {
         super.onFirstUserVisible();
-        LogUtils.e(" onFirstUserVisible ");
         onUserVisible();
     }
 
@@ -112,7 +110,6 @@ public class RecylerViewFragment extends BaseFragment {
             initData(true, mPage = PAGE_SART);
         }
 
-        LogUtils.e(" onFirstUserVisible ");
     }
 
     private void init() {
@@ -169,15 +166,16 @@ public class RecylerViewFragment extends BaseFragment {
                         } else {
                             mMoreRecyleView.setLoadMoreState(LoadMoreRecyleView.STATE_FINISH_LOADMORE);
                         }
-                        LogUtils.e("onCompleted " + mTopQuestions.get(0).getTitle());
+//                        LogUtils.e("onCompleted " + mTopQuestions.get(0).getTitle());
                         initRecylerView();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-//                        LogUtils.e("onError " + mTopQuestions.get(0).getTitle());
+                        LogUtils.e("onError " + e );
                         if (needState) {
                             mStateView.setViewState(MultiStateView.ViewState.ERROR);
+                            LogUtils.e("setViewState Loading");
                         }
                         if(page == 1) {
                             mRefreshLayout.setRefreshing(false);
@@ -199,7 +197,7 @@ public class RecylerViewFragment extends BaseFragment {
                             mTopQuestions.addAll(o);
                         }
 
-                        LogUtils.e("onNext " + mTopQuestions.get(0).getTitle());
+//                        LogUtils.e("onNext " + mTopQuestions.get(0).getTitle());
                     }
                 });
     }
@@ -214,6 +212,8 @@ public class RecylerViewFragment extends BaseFragment {
                 intent.putExtra(AnswersActivity.QUESTION_URL, mTopQuestions.get(position).getUrl());
                 startActivity(intent);
             });
+        } else {
+            mRecyleViewAdapter.notifyDataSetChanged();
         }
     }
 }
